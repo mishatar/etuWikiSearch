@@ -66,7 +66,7 @@ class WikipediaSearcher:
     Класс для поиска статей в Википедии и открытия статьи.
     """
 
-    def init(self, api, parser, opener):
+    def __init__(self, api, parser, opener):
         """
         Инициализирует экземпляр класса WikipediaSearcher.
 
