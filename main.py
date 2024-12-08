@@ -5,17 +5,14 @@ import urllib.parse
 
 class WikipediaAPI:
     """
-    Класс для взаимодействия с API Википедии.
+    Класс для взаимодействия с API Википедии
     """
 
     BASE_URL = "https://ru.wikipedia.org/w/api.php"
 
     def search(self, query):
         """
-        Выполняет поиск по запросу в Википедии.
-
-        :param query: Строка, содержащая поисковый запрос.
-        :return: JSON-ответ от API Википедии.
+        Выполняет поиск по запросу в Википедии
         """
         params = {
             "action": "query",
@@ -29,16 +26,13 @@ class WikipediaAPI:
 
 class SearchResultParser:
     """
-    Класс для парсинга результатов поиска из API Википедии.
+    Класс для парсинга результатов поиска из API Википедии
     """
 
     @staticmethod
     def parse(data):
         """
         Извлекает результаты поиска из JSON-ответа.
-
-        :param data: JSON-ответ от API Википедии.
-        :return: Список статей, найденных по запросу.
         """
         if 'query' in data and 'search' in data['query']:
             return data['query']['search']
@@ -47,15 +41,13 @@ class SearchResultParser:
 
 class ArticleOpener:
     """
-    Класс для открытия статей Википедии в веб-браузере.
+    Класс для открытия статей Википедии в браузере
     """
 
     @staticmethod
     def open(page_id):
         """
-        Открывает статью Википедии по указанному идентификатору страницы.
-
-        :param page_id: Идентификатор страницы статьи в Википедии.
+        Открывает статью Википедии по идентификатору страницы.
         """
         url = f"https://ru.wikipedia.org/w/index.php?curid={page_id}"
         webbrowser.open(url)
@@ -69,10 +61,6 @@ class WikipediaSearcher:
     def __init__(self, api, parser, opener):
         """
         Инициализирует экземпляр класса WikipediaSearcher.
-
-        :param api: Экземпляр класса WikipediaAPI для выполнения запросов к API.
-        :param parser: Экземпляр класса SearchResultParser для парсинга результатов.
-        :param opener: Экземпляр класса ArticleOpener для открытия статей.
         """
         self.api = api
         self.parser = parser
